@@ -15,6 +15,7 @@
 		4C70648E2524FB5F001C2372 /* SwiftUITwoTodoMobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4C70648C2524FB5F001C2372 /* SwiftUITwoTodoMobile.xcdatamodeld */; };
 		4C7064992524FB5F001C2372 /* SwiftUITwoTodoMobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7064982524FB5F001C2372 /* SwiftUITwoTodoMobileTests.swift */; };
 		4C7064A42524FB5F001C2372 /* SwiftUITwoTodoMobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7064A32524FB5F001C2372 /* SwiftUITwoTodoMobileUITests.swift */; };
+		4C8074B62527B41B0082A935 /* ItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8074B52527B41A0082A935 /* ItemForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4C70649F2524FB5F001C2372 /* SwiftUITwoTodoMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUITwoTodoMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7064A32524FB5F001C2372 /* SwiftUITwoTodoMobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUITwoTodoMobileUITests.swift; sourceTree = "<group>"; };
 		4C7064A52524FB5F001C2372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C8074B52527B41A0082A935 /* ItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4C70648F2524FB5F001C2372 /* Info.plist */,
 				4C70648C2524FB5F001C2372 /* SwiftUITwoTodoMobile.xcdatamodeld */,
 				4C7064872524FB5F001C2372 /* Preview Content */,
+				4C8074B52527B41A0082A935 /* ItemForm.swift */,
 			);
 			path = SwiftUITwoTodoMobile;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				4C70648B2524FB5F001C2372 /* Persistence.swift in Sources */,
 				4C7064842524FB5C001C2372 /* ContentView.swift in Sources */,
 				4C7064822524FB5C001C2372 /* SwiftUITwoTodoMobileApp.swift in Sources */,
+				4C8074B62527B41B0082A935 /* ItemForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
