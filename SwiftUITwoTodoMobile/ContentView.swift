@@ -17,6 +17,7 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     @State private var isAddItemPresented = false
+    @State private var alertMessage: AlertMessage?
 
     var body: some View {
         NavigationView {
@@ -50,7 +51,10 @@ struct ContentView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isAddItemPresented, content: ItemForm.init)
+            .sheet(isPresented: $isAddItemPresented) {
+                ItemForm(alertMessage: $alertMessage)
+            }
+            .alert(item: $alertMessage, content: showAlert)
         }
     }
 
@@ -59,42 +63,26 @@ struct ContentView: View {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
 
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            viewContext.saveOrAlert(message: $alertMessage)
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            viewContext.saveOrAlert(message: $alertMessage)
         }
     }
 
     private func check(item: Item) {
         item.isChecked.toggle()
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        viewContext.saveOrAlert(message: $alertMessage)
+    }
+
+    private func showAlert(alertMessage: AlertMessage) -> Alert {
+        Alert(title: Text("Something went wrong..."), message: Text(alertMessage.message), dismissButton: .cancel({
+            fatalError("Unresolved error")
+        }))
     }
 }
 
@@ -105,8 +93,20 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
+// TODO: move AlertMessage and extension into their own file
+struct AlertMessage: Identifiable {
+    var message: String
+    var id: String { message }
+}
+
+#if DEBUG
+extension Binding where Value == AlertMessage? {
+    static var preview: Self { .constant(AlertMessage(message: "Preview")) }
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
+#endif
