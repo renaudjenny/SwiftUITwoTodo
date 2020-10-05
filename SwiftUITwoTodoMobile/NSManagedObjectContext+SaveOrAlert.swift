@@ -4,7 +4,6 @@ import SwiftUI
 extension NSManagedObjectContext {
     func saveOrAlert(message: Binding<AlertMessage?>) {
         do {
-            throw TestError.test
             try save()
         } catch {
             let nsError = error as NSError

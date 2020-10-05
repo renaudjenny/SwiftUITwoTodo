@@ -24,13 +24,13 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     if let title = item.title, let timestamp = item.timestamp, let isChecked = item.isChecked {
-                        HStack {
-                            Text("\(title) \(timestamp, formatter: itemFormatter)")
-                            Button {
-                                check(item: item)
-                            } label: {
-                                Image(systemName: isChecked ? "checkmark.circle" : "circle")
-                            }
+                        Button {
+                            check(item: item)
+                        } label: {
+                            Label(
+                                "\(title) \(timestamp, formatter: itemFormatter)",
+                                systemImage: isChecked ? "checkmark.circle" : "circle"
+                            )
                         }
                     } else {
                         Text("ERROR: Cannot display item")
